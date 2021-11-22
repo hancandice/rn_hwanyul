@@ -1,0 +1,50 @@
+{
+  "name": "kushimtechassignment",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@react-navigation/native": "^6.0.6",
+    "invert-color": "^2.0.0",
+    "moment": "^2.29.1",
+    "native-base": "^2.1.5",
+    "prop-types": "^15.7.2",
+    "react": "17.0.2",
+    "react-native": "^0.66.3",
+    "react-native-chart-kit": "^6.11.0",
+    "react-native-gesture-handler": "^1.10.3",
+    "react-native-indicators": "^0.17.0",
+    "react-native-keyboard-aware-scroll-view": "^0.9.5",
+    "react-native-modal-selector": "^2.1.0",
+    "react-native-responsive-linechart": "^5.7.1",
+    "react-native-safe-area-context": "^3.3.2",
+    "react-native-screens": "^3.9.0",
+    "react-native-svg": "^12.1.1",
+    "react-navigation": "^4.4.4",
+    "react-navigation-redux-helpers": "^4.0.1",
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
+    "redux-logger": "^3.0.6",
+    "redux-saga": "^0.15.4",
+    "redux-thunk": "^2.4.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/runtime": "^7.12.5",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "babel-jest": "^26.6.3",
+    "eslint": "7.14.0",
+    "jest": "^26.6.3",
+    "metro-react-native-babel-preset": "^0.66.2",
+    "react-test-renderer": "17.0.2"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}

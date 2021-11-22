@@ -1,14 +1,4 @@
-import {
-  LineChart,
-  BarChart,
-  PieChart,
-  ProgressChart,
-  ContributionGraph,
-  StackedBarChart,
-} from 'react-native-chart-kit';
-import moment from 'moment';
 import React, {useEffect} from 'react';
-import {connect} from 'react-redux';
 import {
   Dimensions,
   StyleSheet,
@@ -16,18 +6,20 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {LineChart} from 'react-native-chart-kit';
+import {connect} from 'react-redux';
 const styles = StyleSheet.create({
   // ...
-  redButtonContainer: {
+  optionFromButtonContainer: {
     elevation: 8,
-    backgroundColor: 'red',
+    backgroundColor: 'purple',
     borderRadius: 10,
     padding: 10,
     marginHorizontal: 12,
   },
-  blueButtonContainer: {
+  optionToButtonContainer: {
     elevation: 8,
-    backgroundColor: 'blue',
+    backgroundColor: 'grey',
     borderRadius: 10,
     padding: 10,
     marginHorizontal: 12,
@@ -69,11 +61,11 @@ const BezierLineGraph = props => {
         margin: 10,
       }}>
       <View style={styles.rowContainer}>
-        <TouchableOpacity style={styles.blueButtonContainer}>
+        <TouchableOpacity style={styles.optionToButtonContainer}>
           <Text style={styles.appButtonText}>{props.optionTo}</Text>
         </TouchableOpacity>
         <Text style={styles.boldTxt}>/</Text>
-        <TouchableOpacity style={styles.redButtonContainer}>
+        <TouchableOpacity style={styles.optionFromButtonContainer}>
           <Text style={styles.appButtonText}>{props.optionFrom}</Text>
         </TouchableOpacity>
       </View>
@@ -85,10 +77,6 @@ const BezierLineGraph = props => {
               data: props.timeSeries,
               color: (opacity = 0.6) => `rgba(255, 255, 0, ${opacity})`,
             },
-            // {
-            //   data: props.optionToData,
-            //   color: (opacity = 0.6) => `rgba(0, 0, 255, ${opacity})`,
-            // },
           ],
         }}
         width={Dimensions.get('window').width * 0.9} // from react-native

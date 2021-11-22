@@ -19,8 +19,6 @@ import {
 } from '../../redux/reducers';
 import currencyService from '../../services/currencyService';
 import dynamicStyles from './styles';
-import moment from 'moment';
-import {UPDATE_OPERATORS} from '@babel/types';
 
 const HomeScreen = props => {
   const {navigation} = props;
@@ -114,7 +112,6 @@ const HomeScreen = props => {
     }
   };
 
-  const _timeSeriesSet = [];
   const dateArray = [
     getDate(-6),
     getDate(-5),
@@ -134,28 +131,36 @@ const HomeScreen = props => {
     getDate(0, true),
   ];
 
-  console.log(simpleDateArray);
-
-  const showTimeSeriesGraph = () => {
-    setLoading(true);
-    dateArray.forEach(date => {
+  const getTimeSeriesSet = new Promise((resolve, reject) => {
+    const _timeSeriesSet = [null, null, null, null, null, null, null];
+    dateArray.forEach((date, index, _array) => {
       currencyService
         .getHistoricalRates(date, optionFrom, optionTo)
         .then(result => {
           if (result) {
-            _timeSeriesSet.push(result);
-            updateTimeSeriesSet(_timeSeriesSet);
+            _timeSeriesSet[index] = result;
+            if (!_timeSeriesSet.includes(null)) {
+              updateTimeSeriesSet(_timeSeriesSet);
+              resolve(_timeSeriesSet);
+            }
           } else {
             setError(true);
+            resolve(null);
           }
         });
     });
+  });
 
-    setTimeout(() => {
-      setLoading(false);
-      setShowGraph(true);
-    }, 1000);
-  };
+  async function showTimeSeriesGraph() {
+    setLoading(true);
+    await getTimeSeriesSet.then(timeSeries => {
+      if (timeSeries) {
+        console.log('timeSeries: ', timeSeries);
+        setShowGraph(true);
+        setLoading(false);
+      }
+    });
+  }
 
   const renderGraph = () => {
     return (

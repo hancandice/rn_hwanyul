@@ -32,7 +32,6 @@ const dynamicStyles = (appStyles, colorScheme) => {
     },
     mainContainer: {
       marginTop: 40,
-      paddingTop: 0,
       padding: 10,
     },
     rowContainer: {
